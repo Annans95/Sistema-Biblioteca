@@ -1,3 +1,7 @@
+package cadastro.repository;
+
+import cadastro.model.Usuario;
+
 import java.util.List;
 
 public class UsuarioRepository {

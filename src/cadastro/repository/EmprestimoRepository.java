@@ -1,3 +1,7 @@
+package cadastro.repository;
+
+import cadastro.model.Emprestimo;
+
 import java.util.List;
 
 public class EmprestimoRepository {

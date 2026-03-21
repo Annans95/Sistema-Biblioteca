@@ -1,3 +1,5 @@
+package cadastro.model;
+
 import java.time.LocalDate;
 
 public class Emprestimo {
@@ -79,7 +81,7 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return "Emprestimo{" +
+        return "cadastro.model.Emprestimo{" +
                 "id=" + id +
                 ", usuarioId=" + usuarioId +
                 ", livroId=" + livroId +

@@ -1,3 +1,5 @@
+package cadastro.model;
+
 public class Usuario {
     private int id;
     private String nome;
@@ -58,7 +60,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "cadastro.model.Usuario{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
