@@ -1,6 +1,7 @@
 package cadastro.service;
 
 import cadastro.model.Usuario;
+import cadastro.repository.UsuarioRepository;
 
 import java.util.List;
 
@@ -16,32 +17,63 @@ public class UsuarioService {
     }
 
     public Usuario cadastrar(Usuario usuario) {
-        return null;
+        return usuarioRepository.salvar(usuario);
     }
 
     public Usuario buscarPorId(int id) {
-        return null;
+
+        Usuario usuario = usuarioRepository.buscarPorId(id);
+
+        if(usuario == null){
+            throw new RuntimeException("Usuário não encontrado");
+        }
+        return usuario;
     }
 
     public Usuario buscarPorCpf(String cpf) {
-        return null;
+
+        Usuario usuario = usuarioRepository.buscarPorCpf(cpf);
+
+        if(usuario == null){
+            throw new RuntimeException("Usuário não encontrado");
+        }
+        return usuario;
     }
 
     public Usuario buscarPorEmail(String email) {
-        return null;
+        Usuario usuario = usuarioRepository.buscarPorEmail(email);
+
+        if(usuario == null){
+            throw new RuntimeException("Usuário não encontrado");
+        }
+        return usuario;
     }
 
     public List<Usuario> buscarPorNome(String nome) {
-        return null;
+        return usuarioRepository.buscarPorNome(nome);
     }
 
     public List<Usuario> listarTodos() {
-        return null;
+        return usuarioRepository.listarTodos();
     }
 
     public void alterar(Usuario usuario) {
+
+        Usuario existente = usuarioRepository.buscarPorId(usuario.getId());
+
+        if(existente == null){
+            throw new RuntimeException("Usuário não encontrado para atualização");
+        }
+        usuarioRepository.atualizar(usuario);
     }
 
     public void remover(int id) {
+
+        Usuario usuario = usuarioRepository.buscarPorId(id);
+
+        if(usuario == null){
+            throw new RuntimeException("Usuário não encontrado para remoção");
+        }
+        usuarioRepository.deletar(id);
     }
 }
