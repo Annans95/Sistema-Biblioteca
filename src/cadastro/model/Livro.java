@@ -1,3 +1,5 @@
+package cadastro.model;
+
 public class Livro {
     private int id;
     private String nome;

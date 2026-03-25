@@ -1,3 +1,7 @@
+package cadastro.controller;
+
+import cadastro.model.Usuario;
+
 import java.util.List;
 
 public class UsuarioController {

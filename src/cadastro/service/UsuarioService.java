@@ -1,3 +1,7 @@
+package cadastro.service;
+
+import cadastro.model.Usuario;
+
 import java.util.List;
 
 public class UsuarioService {

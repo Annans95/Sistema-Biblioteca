@@ -1,3 +1,7 @@
+package cadastro.repository;
+
+import cadastro.model.Livro;
+
 import java.util.List;
 
 public class LivroRepository {

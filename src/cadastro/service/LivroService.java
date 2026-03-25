@@ -1,3 +1,7 @@
+package cadastro.service;
+
+import cadastro.model.Livro;
+
 import java.util.List;
 
 public class LivroService {

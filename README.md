@@ -8,7 +8,7 @@ Este é um **projeto educacional em template** desenvolvido para que os alunos c
 - As **assinaturas dos métodos** e a **estrutura das classes** já estão prontas
 - Os **métodos estão vazios** e precisam ser **implementados pelos alunos**
 - Siga a documentação abaixo como guia de implementação
-- Use o exemplo em `Main.java` como referência de uso
+- Use o exemplo em `cadastro.application.Main.java` como referência de uso
 
 Através deste projeto, você aprenderá:
 - Como separar responsabilidades em diferentes camadas (Controller → Service → Repository)
@@ -26,14 +26,14 @@ A aplicação é dividida em três camadas principais:
 ```
 ┌─────────────────────────────────────┐
 │     CAMADA DE APRESENTAÇÃO          │
-│     (LivroController)             │
+│     (cadastro.controller.LivroController)             │
 │     - Recebe requisições            │
 │     - Controla o fluxo da aplicação │
 └──────────────┬──────────────────────┘
                │
 ┌──────────────▼──────────────────────┐
 │     CAMADA DE NEGÓCIOS              │
-│     (LivroService)                │
+│     (cadastro.service.LivroService)                │
 │     - Lógica de negócio             │
 │     - Regras de validação           │
 │     - Processamento de dados        │
@@ -41,7 +41,7 @@ A aplicação é dividida em três camadas principais:
                │
 ┌──────────────▼──────────────────────┐
 │     CAMADA DE PERSISTÊNCIA          │
-│     (LivroRepository)             │
+│     (cadastro.repository.LivroRepository)             │
 │     - Acesso aos dados              │
 │     - Operações no banco de dados   │
 └─────────────────────────────────────┘
@@ -51,11 +51,11 @@ A aplicação é dividida em três camadas principais:
 
 ```
 arquitetura_camadas/
-├── Livro.java                 # Entidade (Model)
-├── LivroController.java       # Camada de Apresentação
-├── LivroService.java          # Interface - Camada de Negócios
-├── LivroRepository.java       # Interface - Camada de Persistência
-├── Main.java                    # Ponto de entrada da aplicação
+├── cadastro.model.Livro.java                 # Entidade (Model)
+├── cadastro.controller.LivroController.java       # Camada de Apresentação
+├── cadastro.service.LivroService.java          # Interface - Camada de Negócios
+├── cadastro.repository.LivroRepository.java       # Interface - Camada de Persistência
+├── cadastro.application.Main.java                    # Ponto de entrada da aplicação
 └── README.md                    # Este arquivo
 ```
 
@@ -63,21 +63,21 @@ arquitetura_camadas/
 
 ### ENTIDADES (Models)
 
-#### 📖 Livro.java
+#### 📖 cadastro.model.Livro.java
 - `id` - Identificador único
 - `nome` - Nome do livro
 - `autor` - Autor
 - `edicao` - Edição
 - `quantidade` - Quantidade em estoque
 
-#### 👤 Usuario.java
+#### 👤 cadastro.model.Usuario.java
 - `id` - Identificador único
 - `nome` - Nome completo
 - `email` - Email (único)
 - `cpf` - CPF (único)
 - `telefone` - Número de telefone
 
-#### 📋 Emprestimo.java
+#### 📋 cadastro.model.Emprestimo.java
 - `id` - Identificador único do empréstimo
 - `usuarioId` - Referência ao usuário
 - `livroId` - Referência ao livro
@@ -90,40 +90,40 @@ arquitetura_camadas/
 
 ### 1️⃣ Camada de Apresentação (Controllers)
 
-#### LivroController.java
+#### cadastro.controller.LivroController.java
 - **Responsabilidade**: Intermediar requisições de livros
 - **Métodos**:
-  - `cadastrar(Livro)` - Cria novo livro
+  - `cadastrar(cadastro.model.Livro)` - Cria novo livro
   - `buscarPorId(int)` - Busca por ID
   - `buscarPorNome(String)` - Busca por nome
   - `listarTodos()` - Lista todos os livros
-  - `alterar(Livro)` - Atualiza livro
+  - `alterar(cadastro.model.Livro)` - Atualiza livro
   - `remover(int)` - Remove livro
 
-#### UsuarioController.java
+#### cadastro.controller.UsuarioController.java
 - **Responsabilidade**: Intermediar requisições de usuários
 - **Métodos**:
-  - `cadastrar(Usuario)` - Cria novo usuário
+  - `cadastrar(cadastro.model.Usuario)` - Cria novo usuário
   - `buscarPorId(int)` - Busca por ID
   - `buscarPorCpf(String)` - Busca por CPF
   - `buscarPorEmail(String)` - Busca por email
   - `buscarPorNome(String)` - Busca por nome
   - `listarTodos()` - Lista todos os usuários
-  - `alterar(Usuario)` - Atualiza usuário
+  - `alterar(cadastro.model.Usuario)` - Atualiza usuário
   - `remover(int)` - Remove usuário
 
 ---
 
 ### 2️⃣ Camada de Negócios (Services)
 
-#### LivroService.java
+#### cadastro.service.LivroService.java
 - **Responsabilidade**: Lógica de negócio para livros
 - **Validações**:
   - ID deve ser > 0
   - Nome não pode ser vazio
 - **Métodos**: CRUD similar ao controller
 
-#### UsuarioService.java
+#### cadastro.service.UsuarioService.java
 - **Responsabilidade**: Lógica de negócio para usuários
 - **Validações**:
   - ID deve ser > 0
@@ -134,7 +134,7 @@ arquitetura_camadas/
   - Busca por CPF
   - Busca por Email
 
-#### EmprestimoService.java ⭐ (Lógica Complexa)
+#### cadastro.service.EmprestimoService.java ⭐ (Lógica Complexa)
 - **Responsabilidade**: Gerenciar empréstimos com regras de negócio
 - **Operações principais**:
   - `realizarEmprestimo(usuarioId, livroId, dias)`
@@ -154,21 +154,21 @@ arquitetura_camadas/
 
 ### 3️⃣ Camada de Persistência (Repositories)
 
-#### LivroRepository.java
+#### cadastro.repository.LivroRepository.java
 - **Responsabilidade**: Operações CRUD para livros
 - **Estrutura**: HashMap em memória
 - **Métodos**:
-  - `salvar(Livro)`, `buscarPorId(int)`, `buscarPorNome(String)`
-  - `listarTodos()`, `atualizar(Livro)`, `deletar(int)`
+  - `salvar(cadastro.model.Livro)`, `buscarPorId(int)`, `buscarPorNome(String)`
+  - `listarTodos()`, `atualizar(cadastro.model.Livro)`, `deletar(int)`
 
-#### UsuarioRepository.java
+#### cadastro.repository.UsuarioRepository.java
 - **Responsabilidade**: Operações CRUD para usuários
 - **Métodos especiais**:
   - `buscarPorCpf(String)` - Busca CPF para validação
   - `buscarPorEmail(String)` - Busca email para validação
   - `buscarPorNome(String)` - Busca parcial por nome
 
-#### EmprestimoRepository.java
+#### cadastro.repository.EmprestimoRepository.java
 - **Responsabilidade**: Operações CRUD para empréstimos
 - **Métodos especiais**:
   - `buscarPorUsuario(int)` - Todos os empréstimos de um usuário
@@ -200,16 +200,16 @@ arquitetura_camadas/
 Use a estrutura de dados apropriada (HashMap, ArrayList, etc.) para implementar o armazenamento em memória.
 
 ## 📖 Exemplo de Uso
-Observe o arquivo `Main.java` que contém um exemplo de como as classes devem ser utilizadas após a implementação. Execute-o após implementar todos os métodos para validar seu trabalho.
+Observe o arquivo `cadastro.application.Main.java` que contém um exemplo de como as classes devem ser utilizadas após a implementação. Execute-o após implementar todos os métodos para validar seu trabalho.
 
 ## 💡 Fluxo de Empréstimo e Devolução
 
 ### Novo Empréstimo
-1. Usuário acessa `EmprestimoService.realizarEmprestimo(usuarioId, livroId, dias)`
+1. Usuário acessa `cadastro.service.EmprestimoService.realizarEmprestimo(usuarioId, livroId, dias)`
 2. Service deve validar:
-   - ✓ Usuário existe (use UsuarioRepository)
-   - ✓ Livro existe (use LivroRepository)
-   - ✓ Livro tem quantidade > 0
+   - ✓ Usuário existe (use cadastro.repository.UsuarioRepository)
+   - ✓ cadastro.model.Livro existe (use cadastro.repository.LivroRepository)
+   - ✓ cadastro.model.Livro tem quantidade > 0
    - ✓ Usuário não tem este livro emprestado já
 3. Se válido:
    - Decrementa quantidade do livro
@@ -218,7 +218,7 @@ Observe o arquivo `Main.java` que contém um exemplo de como as classes devem se
 4. Retorna empréstimo
 
 ### Devolução
-1. Usuário acessa `EmprestimoService.devolverLivro(emprestimoId)`
+1. Usuário acessa `cadastro.service.EmprestimoService.devolverLivro(emprestimoId)`
 2. Service deve:
    - Validar se empréstimo existe
    - Validar se ainda está ativo
@@ -227,7 +227,7 @@ Observe o arquivo `Main.java` que contém um exemplo de como as classes devem se
    - Registra data real de devolução
 
 ### Verificação de Atrasos
-- `EmprestimoService.verificarAtraso(emprestimoId)`
+- `cadastro.service.EmprestimoService.verificarAtraso(emprestimoId)`
 - Retorna `true` se data atual > data prevista E empréstimo ainda está ativo
 - Retorna `false` se já foi devolvido
 
@@ -238,8 +238,8 @@ Observe o arquivo `Main.java` que contém um exemplo de como as classes devem se
 ### 1️⃣ Implementar Repositories (Camada de Persistência)
 Comece pelos repositories, usando `HashMap<Integer, Objeto>` para armazenar dados:
 
-**LivroRepository.java**
-- Crie um `static Map<Integer, Livro> banco = new HashMap<>()`
+**cadastro.repository.LivroRepository.java**
+- Crie um `static Map<Integer, cadastro.model.Livro> banco = new HashMap<>()`
 - `salvar()`: adicionar ao lista
 - `buscarPorId()`: recuperar do lista
 - `buscarPorNome()`: iterar e comparar (case-insensitive)
@@ -247,13 +247,13 @@ Comece pelos repositories, usando `HashMap<Integer, Objeto>` para armazenar dado
 - `atualizar()`: atualizar no lista
 - `deletar()`: remover do lista
 
-**UsuarioRepository.java**
-- Similar ao LivroRepository
+**cadastro.repository.UsuarioRepository.java**
+- Similar ao cadastro.repository.LivroRepository
 - `buscarPorCpf()`: iterar e comparar CPF
 - `buscarPorEmail()`: iterar e comparar email (case-insensitive)
 - `buscarPorNome()`: iterar e comparar nome (case-insensitive, busca parcial)
 
-**EmprestimoRepository.java**
+**cadastro.repository.EmprestimoRepository.java**
 - Similar aos anteriores
 - `buscarPorUsuario()`: filtrar por usuarioId
 - `buscarEmprestimosAtivos()`: filtrar por usuarioId && ativo == true
@@ -262,7 +262,7 @@ Comece pelos repositories, usando `HashMap<Integer, Objeto>` para armazenar dado
 ### 2️⃣ Implementar Services (Camada de Negócio)
 Services contêm a lógica de validação e chamam os repositories:
 
-**LivroService.java**
+**cadastro.service.LivroService.java**
 - `cadastrar()`: validar ID > 0, nome não vazio, depois chamar repository.salvar()
 - `buscarPorId()`: delegar ao repository
 - `buscarPorNome()`: validar nome não vazio, depois chamar repository
@@ -270,7 +270,7 @@ Services contêm a lógica de validação e chamam os repositories:
 - `alterar()`: validar se livro existe, depois chamar repository.atualizar()
 - `remover()`: validar se livro existe, depois chamar repository.deletar()
 
-**UsuarioService.java**
+**cadastro.service.UsuarioService.java**
 - `cadastrar()`: validações completas:
   - ID > 0
   - Nome não vazio
@@ -281,7 +281,7 @@ Services contêm a lógica de validação e chamam os repositories:
 - `buscarPorNome()`: validar nome não vazio, delegar ao repository
 - `alterar()` / `remover()`: validar existência antes de atualizar/deletar
 
-**EmprestimoService.java** (mais complexo!)
+**cadastro.service.EmprestimoService.java** (mais complexo!)
 - `realizarEmprestimo()`:
   - Validar usuário existe
   - Validar livro existe
@@ -289,7 +289,7 @@ Services contêm a lógica de validação e chamam os repositories:
   - Validar usuário não tem este livro emprestado (buscarEmprestimosAtivos)
   - Decrementar livro.quantidade
   - Atualizar livro no repository
-  - Criar novo Emprestimo e salvar
+  - Criar novo cadastro.model.Emprestimo e salvar
   - Retornar empréstimo
 - `devolverLivro()`:
   - Validar empréstimo existe
@@ -303,14 +303,14 @@ Services contêm a lógica de validação e chamam os repositories:
 ### 3️⃣ Implementar Controllers (Camada de Apresentação)
 Controllers são simples - apenas delegam para o service:
 
-**LivroController.java**
+**cadastro.controller.LivroController.java**
 - Todos os métodos chamam o serviço correspondente
 
-**UsuarioController.java**
+**cadastro.controller.UsuarioController.java**
 - Todos os métodos chamam o serviço correspondente
 
-### 4️⃣ Testar com Main.java
-- Depois de implementar, execute `java Main`
+### 4️⃣ Testar com cadastro.application.Main.java
+- Depois de implementar, execute `java cadastro.application.Main`
 - O programa deve rodar sem erros e demonstrar todas as funcionalidades
 
 ---
@@ -318,8 +318,8 @@ Controllers são simples - apenas delegam para o service:
 ## ⚠️ Dicas Importantes
 
 1. **Use List**: A persistência é em memória, use `List<Objeto>`
-2. **ID única**: Use um contador estático em EmprestimoService para gerar IDs únicos
-3. **Coloque try-catch em Main.java**: As validações vão lançar exceções se dados inválidos
+2. **ID única**: Use um contador estático em cadastro.service.EmprestimoService para gerar IDs únicos
+3. **Coloque try-catch em cadastro.application.Main.java**: As validações vão lançar exceções se dados inválidos
 4. **LocalDate.now()**: Use para pegar data/hora atual em empréstimos
 5. **Estudar os métodos herdados de String**: `equals()`, `equalsIgnoreCase()`, `contains()`, `trim()`
 6. **Retorne NOT NULL**: Controllers que retornam objetos devem delegar ao service
@@ -327,15 +327,15 @@ Controllers são simples - apenas delegam para o service:
 
 ## ✅ Checklist de Implementação
 
-- [ ] LivroRepository totalmente implementado
-- [ ] UsuarioRepository totalmente implementado
-- [ ] EmprestimoRepository totalmente implementado
-- [ ] LivroService totalmente implementado
-- [ ] UsuarioService totalmente implementado
-- [ ] EmprestimoService totalmente implementado
-- [ ] LivroController totalmente implementado
-- [ ] UsuarioController totalmente implementado
-- [ ] Executa `java Main` sem erros
+- [ ] cadastro.repository.LivroRepository totalmente implementado
+- [ ] cadastro.repository.UsuarioRepository totalmente implementado
+- [ ] cadastro.repository.EmprestimoRepository totalmente implementado
+- [ ] cadastro.service.LivroService totalmente implementado
+- [ ] cadastro.service.UsuarioService totalmente implementado
+- [ ] cadastro.service.EmprestimoService totalmente implementado
+- [ ] cadastro.controller.LivroController totalmente implementado
+- [ ] cadastro.controller.UsuarioController totalmente implementado
+- [ ] Executa `java cadastro.application.Main` sem erros
 - [ ] Todas as funcionalidades funcionam conforme esperado
 
 ---  

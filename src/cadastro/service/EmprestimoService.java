@@ -1,3 +1,7 @@
+package cadastro.service;
+
+import cadastro.model.Emprestimo;
+
 import java.util.List;
 
 public class EmprestimoService {
@@ -12,9 +16,9 @@ public class EmprestimoService {
         this.livroRepository = new LivroRepository();
     }
 
-    public EmprestimoService(EmprestimoRepository emprestimoRepository, 
-                            UsuarioRepository usuarioRepository, 
-                            LivroRepository livroRepository) {
+    public EmprestimoService(EmprestimoRepository emprestimoRepository,
+                             UsuarioRepository usuarioRepository,
+                             LivroRepository livroRepository) {
         this.emprestimoRepository = emprestimoRepository;
         this.usuarioRepository = usuarioRepository;
         this.livroRepository = livroRepository;
