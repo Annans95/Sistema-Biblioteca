@@ -8,7 +8,10 @@ public class LivroRepository {
 
     private List<Livro> livros = new ArrayList<>();
 
+    private int contadorId = 1;
+
     public Livro salvar(Livro livro) {
+        livro.setId(contadorId++);
         livros.add(livro);
         return livro;
     }
