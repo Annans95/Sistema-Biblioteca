@@ -26,10 +26,14 @@ public class UsuarioController {
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
+        System.out.print("Telefone: ");
+        String telefone = scanner.nextLine();
+
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuario.setCpf(cpf);
         usuario.setEmail(email);
+        usuario.setTelefone(telefone);
 
         usuarioService.cadastrar(usuario);
 

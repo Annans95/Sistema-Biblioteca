@@ -24,8 +24,20 @@ public class LivroController {
         System.out.print("Nome do livro: ");
         String nome = scanner.nextLine();
 
+        System.out.print("Autor: ");
+        String autor = scanner.nextLine();
+
+        System.out.print("Quantidade: ");
+        String quantidade = scanner.nextLine();
+
+        System.out.print("Edição: ");
+        String edicao = scanner.nextLine();
+
         Livro livro = new Livro();
-        livro.setNome(nome); // ajusta se o atributo for diferente
+        livro.setNome(nome);
+        livro.setAutor(autor);
+        livro.setQuantidade(Integer.parseInt(quantidade));
+        livro.setEdicao(Integer.parseInt(edicao));
 
         livroService.cadastrar(livro);
 
@@ -63,4 +75,3 @@ public class LivroController {
         System.out.println("Livro devolvido!");
     }
 }
-//teste

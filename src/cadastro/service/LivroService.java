@@ -1,5 +1,6 @@
 package cadastro.service;
 
+import cadastro.exception.LivroJaCadastradoException;
 import cadastro.model.Livro;
 import cadastro.repository.LivroRepository;
 
@@ -15,9 +16,24 @@ public class LivroService {
         this.livroRepository = livroRepository;
     }
 
+feature-repository
     public String cadastrar(Livro livro) {
         livroRepository.salvar(livro);
         return "Livro cadastrado com sucesso";
+
+    public Livro cadastrar(Livro livro) {
+
+        List<Livro> existentes = livroRepository.buscarPorNome(livro.getNome());
+
+        if(!existentes.isEmpty()) {
+            throw new LivroJaCadastradoException();
+        }
+        Livro livroSalvo = livroRepository.salvar(livro);
+      
+        System.out.println("Livro '" + livroSalvo.getNome() + "' cadastrado com sucesso no sistema.");
+
+        return livroSalvo;
+main
     }
 
     public Livro buscarPorId(int id) {
@@ -54,5 +70,4 @@ public class LivroService {
         }
         livroRepository.deletar(id);
     }
-
 }
