@@ -16,7 +16,6 @@ public class LivroService {
     }
 
     public Livro cadastrar(Livro livro) {
-        System.out.println("Cadastrando Livro...");
         return livroRepository.salvar(livro);
     }
 
