@@ -1,5 +1,6 @@
 package cadastro.service;
 
+import cadastro.exception.LivroJaCadastradoException;
 import cadastro.model.Livro;
 import cadastro.repository.LivroRepository;
 
@@ -16,6 +17,12 @@ public class LivroService {
     }
 
     public Livro cadastrar(Livro livro) {
+
+        List<Livro> existentes = livroRepository.buscarPorNome(livro.getNome());
+
+        if(!existentes.isEmpty()) {
+            throw new LivroJaCadastradoException();
+        }
         return livroRepository.salvar(livro);
     }
 
