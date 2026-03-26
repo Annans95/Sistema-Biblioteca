@@ -1,46 +1,43 @@
 package cadastro.controller;
 
 import cadastro.model.Usuario;
+import cadastro.service.UsuarioService;
 
-import java.util.List;
+import java.util.Scanner;
 
 public class UsuarioController {
+
     private UsuarioService usuarioService;
+    private Scanner scanner;
 
-    public UsuarioController() {
-        this.usuarioService = new UsuarioService();
-    }
-
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService,
+                             Scanner scanner) {
         this.usuarioService = usuarioService;
+        this.scanner = scanner;
     }
 
-    public void cadastrar(Usuario usuario) {
+    public void cadastrarUsuario() {
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("CPF: ");
+        String cpf = scanner.nextLine();
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+
+        Usuario usuario = new Usuario();
+        usuario.setNome(nome);
+        usuario.setCpf(cpf);
+        usuario.setEmail(email);
+
+        usuarioService.cadastrar(usuario);
+
+        System.out.println("Usuário cadastrado!");
     }
 
-    public Usuario buscarPorId(int id) {
-        return null;
-    }
-
-    public Usuario buscarPorCpf(String cpf) {
-        return null;
-    }
-
-    public Usuario buscarPorEmail(String email) {
-        return null;
-    }
-
-    public List<Usuario> buscarPorNome(String nome) {
-        return null;
-    }
-
-    public List<Usuario> listarTodos() {
-        return null;
-    }
-
-    public void alterar(Usuario usuario) {
-    }
-
-    public void remover(int id) {
+    public void listarUsuarios() {
+        usuarioService.listarTodos()
+                .forEach(System.out::println);
     }
 }

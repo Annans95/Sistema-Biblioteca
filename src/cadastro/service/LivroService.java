@@ -39,7 +39,7 @@ public class LivroService {
     public void alterar(Livro livro) {
         Livro existe = livroRepository.buscarPorId(livro.getId());
 
-        if(existente == null) {
+        if(existe == null) {
             throw new RuntimeException("Livro não encontrado para atualização");
         }
         livroRepository.atualizar(livro);
@@ -53,4 +53,5 @@ public class LivroService {
         }
         livroRepository.deletar(id);
     }
+
 }
