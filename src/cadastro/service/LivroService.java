@@ -16,6 +16,11 @@ public class LivroService {
         this.livroRepository = livroRepository;
     }
 
+feature-repository
+    public String cadastrar(Livro livro) {
+        livroRepository.salvar(livro);
+        return "Livro cadastrado com sucesso";
+
     public Livro cadastrar(Livro livro) {
 
         List<Livro> existentes = livroRepository.buscarPorNome(livro.getNome());
@@ -23,8 +28,12 @@ public class LivroService {
         if(!existentes.isEmpty()) {
             throw new LivroJaCadastradoException();
         }
-        System.out.println("Cadastrando Livro...");
-        return livroRepository.salvar(livro);
+        Livro livroSalvo = livroRepository.salvar(livro);
+      
+        System.out.println("Livro '" + livroSalvo.getNome() + "' cadastrado com sucesso no sistema.");
+
+        return livroSalvo;
+main
     }
 
     public Livro buscarPorId(int id) {
