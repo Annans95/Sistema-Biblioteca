@@ -23,6 +23,7 @@ public class LivroService {
         if(!existentes.isEmpty()) {
             throw new LivroJaCadastradoException();
         }
+        System.out.println("Cadastrando Livro...");
         return livroRepository.salvar(livro);
     }
 
@@ -60,5 +61,4 @@ public class LivroService {
         }
         livroRepository.deletar(id);
     }
-
 }
