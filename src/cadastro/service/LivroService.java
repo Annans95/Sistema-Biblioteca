@@ -15,8 +15,9 @@ public class LivroService {
         this.livroRepository = livroRepository;
     }
 
-    public Livro cadastrar(Livro livro) {
-        return livroRepository.salvar(livro);
+    public String cadastrar(Livro livro) {
+        livroRepository.salvar(livro);
+        return "Livro cadastrado com sucesso";
     }
 
     public Livro buscarPorId(int id) {
