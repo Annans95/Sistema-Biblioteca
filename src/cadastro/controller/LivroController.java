@@ -21,6 +21,7 @@ public class LivroController {
     }
 
     public void cadastrarLivro() {
+
         System.out.print("Nome do livro: ");
         String nome = scanner.nextLine();
 
