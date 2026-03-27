@@ -9,17 +9,9 @@ import java.util.List;
 public class LivroService {
     private LivroRepository livroRepository;
 
-    public LivroService() {
-        this.livroRepository = new LivroRepository();
-    }
     public LivroService(LivroRepository livroRepository){
         this.livroRepository = livroRepository;
     }
-
-feature-repository
-    public String cadastrar(Livro livro) {
-        livroRepository.salvar(livro);
-        return "Livro cadastrado com sucesso";
 
     public Livro cadastrar(Livro livro) {
 
@@ -33,7 +25,6 @@ feature-repository
         System.out.println("Livro '" + livroSalvo.getNome() + "' cadastrado com sucesso no sistema.");
 
         return livroSalvo;
-main
     }
 
     public Livro buscarPorId(int id) {
