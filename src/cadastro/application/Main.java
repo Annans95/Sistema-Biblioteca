@@ -1,5 +1,8 @@
 package cadastro.application;
 
+import cadastro.repository.LivroRepository;
+import cadastro.repository.UsuarioRepository;
+import cadastro.repository.EmprestimoRepository;
 import cadastro.controller.LivroController;
 import cadastro.controller.UsuarioController;
 import cadastro.service.LivroService;
@@ -15,9 +18,14 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        LivroService livroService = new LivroService();
-        UsuarioService usuarioService = new UsuarioService();
-        EmprestimoService emprestimoService = new EmprestimoService();
+        LivroRepository livroRepository = new LivroRepository();
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        EmprestimoRepository emprestimoRepository = new EmprestimoRepository();
+
+        LivroService livroService = new LivroService(livroRepository);
+        UsuarioService usuarioService = new UsuarioService(usuarioRepository);
+        EmprestimoService emprestimoService =
+                new EmprestimoService(emprestimoRepository, usuarioRepository, livroRepository);
 
         LivroController livroController =
                 new LivroController(livroService, emprestimoService, scanner);
